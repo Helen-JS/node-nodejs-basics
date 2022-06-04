@@ -9,16 +9,13 @@ const __dirname = dirname(__filename);
 export const list = async () => {
     let folder = path.join(__dirname, 'files');
     let err = 'FS operation failed';
-    fs.access(folder, (error) => {
+    fs.readdir(folder, (error, files) => {
         if (error) {
             throw new Error(err);
-        } else {
-            fs.readdir(folder, (error, files) => {
-                files.forEach(file => {
-                    console.log(file);
-                })
-            })
         }
+        files.forEach(file => {
+            console.log(file);
+        })
     })
 };
 
