@@ -8,19 +8,15 @@ const __dirname = dirname(__filename);
 
 export const create = async () => {
     let file = path.join(__dirname, 'files', 'fresh.txt')
-    // if (fs.exists(file)) {
-    //     throw 'FS operation failed';
-    // }
     let err = 'FS operation failed';
-    fs.access(file, (err) => {
-        if (err) {
-            console.error(err)
-            return
+    fs.access(file, (error) => {
+        if (error) {
+            fs.appendFile(file, 'I am fresh and young', () => {
+                console.log('File was successfully created!');
+            })
+        } else {
+            console.error(err);
         }
-    })
-
-    fs.appendFile(file, 'I am fresh and young', () => {
-        console.log('File was successfully created!');
     })
 };
 
