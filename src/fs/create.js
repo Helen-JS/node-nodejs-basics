@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export const create = async () => {
-    let file = path.join(__dirname, 'files', 'fresh.txt')
+    let file = path.join(__dirname, 'files', 'fresh.txt');
     let err = 'FS operation failed';
     fs.access(file, (error) => {
         if (error) {
@@ -15,7 +15,7 @@ export const create = async () => {
                 console.log('File was successfully created!');
             })
         } else {
-            console.error(err);
+            throw new Error(err);
         }
     })
 };
