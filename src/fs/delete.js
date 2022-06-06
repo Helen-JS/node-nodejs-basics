@@ -1,3 +1,20 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import {fileURLToPath} from 'url';
+import {dirname} from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export const remove = async () => {
-    // Write your code here 
+    let file = path.join(__dirname, 'files', 'fileToRemove.txt');
+    let err = 'FS operation failed';
+    fs.unlink(file, (error) => {
+        if (error) {
+            throw new Error(err);
+        }
+        console.log('File was successfully removed!');
+    })
 };
+
+remove();
